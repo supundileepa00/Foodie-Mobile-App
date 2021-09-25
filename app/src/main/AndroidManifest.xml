@@ -10,12 +10,41 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.FoodieMobileApp">
         <activity android:name=".MainActivity">
+
+        </activity>
+
+        <activity android:name=".AdminLoginActivity"></activity>
+        <activity android:name=".UserLoginActivity" />
+        <activity android:name=".UserLoignSelect">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
+
         </activity>
+
+        <activity android:name=".UserRegistration" />
+        <activity android:name=".paymentThankYouPage" />
+        <activity android:name=".PaymentCheckout">
+
+        </activity>
+        <activity android:name=".EditPaymentDetails" />
+        <activity
+            android:name=".PayByCardActivity"
+            android:label="@string/Payment_app_name" />
+        <activity
+            android:name=".PaymentConfirmActivity"
+            android:label="@string/Payment_app_name" />
+        <activity
+            android:name=".AddCoinsPaymentActivity"
+            android:label="@string/AddCoins_app_name" />
+        <activity
+            android:name=".PaybyCoinsActivity"
+            android:label="@string/Coins_app_name" />
+        <activity
+            android:name=".PaymentSelectActivity"
+            android:label="@string/Payment_app_name" />
     </application>
 
 </manifest>

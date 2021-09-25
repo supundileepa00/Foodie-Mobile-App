@@ -1,0 +1,100 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".PaybyCoinsActivity">
+
+    <TextView
+        android:id="@+id/tv_availableCoins1"
+        android:layout_width="209dp"
+        android:layout_height="54dp"
+        android:layout_marginStart="24dp"
+        android:layout_marginLeft="24dp"
+        android:layout_marginTop="32dp"
+        android:text="@string/tv_availableCoins1"
+        android:textSize="28sp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <TextView
+        android:id="@+id/tv_availableCoins2"
+        android:layout_width="187dp"
+        android:layout_height="62dp"
+        android:layout_marginStart="232dp"
+        android:layout_marginLeft="232dp"
+        android:text="@string/tv_availableCoins2"
+        android:textSize="28sp"
+        android:textStyle="bold"
+        app:layout_constraintBaseline_toBaselineOf="@+id/tv_availableCoins1"
+        app:layout_constraintStart_toStartOf="parent" />
+
+    <ImageView
+        android:id="@+id/imageViewCoins"
+        android:layout_width="307dp"
+        android:layout_height="265dp"
+        android:layout_marginTop="20dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.538"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/tv_availableCoins1"
+        app:srcCompat="@drawable/coins" />
+
+    <TextView
+        android:id="@+id/tv_paymentTotalPrice1"
+        android:layout_width="146dp"
+        android:layout_height="42dp"
+        android:layout_marginStart="52dp"
+        android:layout_marginLeft="52dp"
+        android:layout_marginTop="4dp"
+        android:fontFamily="sans-serif-black"
+        android:text="@string/tv_paymentTotalPrice1"
+        android:textSize="24sp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/imageViewCoins" />
+
+    <TextView
+        android:id="@+id/tv_paymentTotalPrice2"
+        android:layout_width="146dp"
+        android:layout_height="42dp"
+        android:layout_marginEnd="64dp"
+        android:layout_marginRight="64dp"
+        android:fontFamily="sans-serif-black"
+        android:text="@string/tv_paymentTotalPrice2"
+        android:textSize="24sp"
+        app:layout_constraintBaseline_toBaselineOf="@+id/tv_paymentTotalPrice1"
+        app:layout_constraintEnd_toEndOf="parent" />
+
+    <Button
+        android:id="@+id/btn_addMoreCoins"
+        android:layout_width="300dp"
+        android:layout_height="63dp"
+        android:layout_marginTop="24dp"
+        android:onClick="addCoins"
+        android:text="@string/btn_addMoreCoins"
+        android:textAllCaps="false"
+        android:textSize="25sp"
+        app:backgroundTint="@color/btn_yellow"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.504"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/tv_paymentTotalPrice1" />
+
+    <Button
+        android:id="@+id/btn_PaybyCoins"
+        android:layout_width="300dp"
+        android:layout_height="63dp"
+        android:layout_marginTop="12dp"
+        android:onClick="pay"
+        android:text="@string/btn_PaybyCoins"
+        android:textAllCaps="false"
+        android:textSize="25sp"
+        app:backgroundTint="@color/btn_orange"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.504"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/btn_addMoreCoins" />
+
+
+</androidx.constraintlayout.widget.ConstraintLayout>
