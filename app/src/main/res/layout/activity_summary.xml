@@ -1,0 +1,78 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".SummaryActivity">
+
+
+    <android.support.v7.widget.CardView
+        android:layout_width="match_parent"
+        android:layout_height="500dp"
+        app:cardCornerRadius="10dp"
+        app:cardElevation="10dp"
+        android:layout_margin="10dp">
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:gravity="center"
+                android:layout_marginTop="10dp"
+                android:textSize="30sp"
+                android:id="@+id/orderSummary"
+                android:text="ORDER SUMMARY"/>
+
+
+
+            <ListView
+                android:layout_width="match_parent"
+                android:paddingTop="40dp"
+                android:layout_height="match_parent"
+                android:id="@+id/list"/>
+
+            <Button
+                android:id="@+id/clearthedatabase"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentBottom="true"
+                android:layout_centerInParent="true"
+                android:layout_marginLeft="30dp"
+                android:layout_marginRight="30dp"
+                android:background="#FFEB3B"
+                android:text="@string/clearthedatabase"
+                android:textColor="#100101" />
+        </RelativeLayout>
+
+
+
+
+
+    </android.support.v7.widget.CardView>
+
+    <Button
+        android:id="@+id/btn_checkout_1"
+        android:layout_width="wrap_content"
+        android:layout_height="56dp"
+        android:layout_alignParentStart="true"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentTop="true"
+        android:layout_alignParentEnd="true"
+        android:layout_alignParentRight="true"
+        android:layout_alignParentBottom="true"
+        android:layout_marginStart="219dp"
+        android:layout_marginLeft="219dp"
+        android:layout_marginTop="532dp"
+        android:layout_marginEnd="11dp"
+        android:layout_marginRight="11dp"
+        android:layout_marginBottom="15dp"
+        android:background="#FF9800"
+        android:text="@string/btn_checkout_1"
+        android:textSize="16sp"
+        android:textStyle="bold" />
+
+</RelativeLayout>
