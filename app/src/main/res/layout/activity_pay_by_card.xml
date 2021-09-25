@@ -1,0 +1,175 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".PayByCardActivity">
+
+    <TextView
+        android:id="@+id/tv_payByCardTotAmount"
+        android:layout_width="243dp"
+        android:layout_height="61dp"
+        android:layout_marginStart="4dp"
+        android:layout_marginLeft="4dp"
+        android:layout_marginTop="24dp"
+        android:text="@string/tv_payByCardTotAmount"
+        android:textSize="34sp"
+        android:textStyle="bold"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <TextView
+        android:id="@+id/tv_payByCardAmount"
+        android:layout_width="180dp"
+        android:layout_height="63dp"
+        android:layout_marginStart="236dp"
+        android:layout_marginLeft="236dp"
+        android:text="@string/tv_payByCardAmount"
+        android:textSize="28sp"
+        android:textStyle="bold"
+        app:layout_constraintBaseline_toBaselineOf="@+id/tv_payByCardTotAmount"
+        app:layout_constraintStart_toStartOf="parent" />
+
+    <TextView
+        android:id="@+id/tv_payByCardPymntD"
+        android:layout_width="310dp"
+        android:layout_height="51dp"
+        android:layout_marginStart="16dp"
+        android:layout_marginLeft="16dp"
+        android:layout_marginTop="24dp"
+        android:fontFamily="monospace"
+        android:text="@string/tv_payByCardPymntD"
+        android:textSize="20sp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/tv_payByCardTotAmount" />
+
+    <TextView
+        android:id="@+id/tv_payByCardFullName"
+        android:layout_width="139dp"
+        android:layout_height="36dp"
+        android:layout_marginStart="16dp"
+        android:layout_marginLeft="16dp"
+        android:layout_marginTop="24dp"
+        android:text="@string/tv_payByCardFullName"
+        android:textSize="18sp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/tv_payByCardPymntD" />
+
+    <TextView
+        android:id="@+id/tv_payByCardCardNo"
+        android:layout_width="139dp"
+        android:layout_height="36dp"
+        android:layout_marginStart="16dp"
+        android:layout_marginLeft="16dp"
+        android:layout_marginTop="24dp"
+        android:text="@string/tv_payByCardCardNo"
+        android:textSize="18sp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/tv_payByCardFullName" />
+
+    <TextView
+        android:id="@+id/tv_payByCardExp"
+        android:layout_width="144dp"
+        android:layout_height="48dp"
+        android:layout_marginStart="16dp"
+        android:layout_marginLeft="16dp"
+        android:layout_marginTop="24dp"
+        android:text="@string/tv_payByCardExp"
+        android:textSize="18sp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/tv_payByCardCardNo" />
+
+    <TextView
+        android:id="@+id/tv_payByCardCVV"
+        android:layout_width="139dp"
+        android:layout_height="36dp"
+        android:layout_marginStart="16dp"
+        android:layout_marginLeft="16dp"
+        android:layout_marginTop="24dp"
+        android:text="@string/tv_payByCardCVV"
+        android:textSize="18sp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/tv_payByCardExp" />
+
+    <EditText
+        android:id="@+id/et_payByCardFullName"
+        android:layout_width="231dp"
+        android:layout_height="43dp"
+        android:layout_marginEnd="16dp"
+        android:layout_marginRight="16dp"
+        android:ems="10"
+        android:hint="@string/et_payByCardFullName"
+        android:inputType="textPersonName"
+        app:layout_constraintBaseline_toBaselineOf="@+id/tv_payByCardFullName"
+        app:layout_constraintEnd_toEndOf="parent" />
+
+    <EditText
+        android:id="@+id/et_payByCardCardNo"
+        android:layout_width="230dp"
+        android:layout_height="41dp"
+        android:layout_marginEnd="8dp"
+        android:layout_marginRight="8dp"
+        android:ems="10"
+        android:hint="@string/et_payByCardCardNo"
+        android:inputType="numberDecimal"
+        app:layout_constraintBaseline_toBaselineOf="@+id/tv_payByCardCardNo"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.555"
+        app:layout_constraintStart_toEndOf="@+id/tv_payByCardCardNo" />
+
+    <EditText
+        android:id="@+id/et_payByCardExpMonth"
+        android:layout_width="109dp"
+        android:layout_height="40dp"
+        android:layout_marginStart="8dp"
+        android:layout_marginLeft="8dp"
+        android:ems="10"
+        android:hint="@string/et_payByCardExpMonth"
+        android:inputType="numberDecimal"
+        android:maxLength="2"
+        app:layout_constraintBaseline_toBaselineOf="@+id/tv_payByCardExp"
+        app:layout_constraintStart_toEndOf="@+id/tv_payByCardExp" />
+
+    <EditText
+        android:id="@+id/et_payByCardExpYear"
+        android:layout_width="120dp"
+        android:layout_height="40dp"
+        android:layout_marginEnd="16dp"
+        android:layout_marginRight="16dp"
+        android:ems="10"
+        android:hint="@string/et_payByCardExpYear"
+        android:inputType="numberDecimal"
+        android:maxLength="4"
+        app:layout_constraintBaseline_toBaselineOf="@+id/et_payByCardExpMonth"
+        app:layout_constraintEnd_toEndOf="parent" />
+
+    <EditText
+        android:id="@+id/et_payByCardCVV"
+        android:layout_width="226dp"
+        android:layout_height="45dp"
+        android:layout_marginEnd="20dp"
+        android:layout_marginRight="20dp"
+        android:ems="10"
+        android:hint="@string/et_payByCardCVV"
+        android:inputType="numberDecimal"
+        android:maxLength="3"
+        app:layout_constraintBaseline_toBaselineOf="@+id/tv_payByCardCVV"
+        app:layout_constraintEnd_toEndOf="parent" />
+
+    <Button
+        android:id="@+id/btn_payByCardConfirm"
+        android:layout_width="310dp"
+        android:layout_height="74dp"
+        android:layout_marginTop="52dp"
+        android:onClick="addPayment"
+        android:text="@string/btn_payByCardConfirm"
+        android:textAllCaps="false"
+        android:textSize="24sp"
+        app:backgroundTint="@color/btn_orange"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.495"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/tv_payByCardCVV" />
+
+</androidx.constraintlayout.widget.ConstraintLayout>
