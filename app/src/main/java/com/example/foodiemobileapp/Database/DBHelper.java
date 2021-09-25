@@ -6,6 +6,9 @@ import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
 
+import java.util.ArrayList;
+import java.util.List;
+
 public class DBHelper extends SQLiteOpenHelper {
     public static final String DATABASE_NAME = "FoodieDB";
     private static final String TAG = "";
@@ -13,6 +16,9 @@ public class DBHelper extends SQLiteOpenHelper {
     public DBHelper(Context context) {
         super(context, DATABASE_NAME, null, 1);
     }
+   // public DBHelper(Context context) {
+     //   super(context, "Userdata.db", null, 1);
+   // }
 
     @Override
     public void onCreate(SQLiteDatabase db) {
@@ -40,11 +46,14 @@ public class DBHelper extends SQLiteOpenHelper {
         db.execSQL(SQL_CREATE_UserTable);
         db.execSQL(SQL_CREATE_CoinsTable);
         db.execSQL(SQL_CREATE_PaymentTable);
+
+        db.execSQL("create Table userdetails(name TEXT primary key, city TEXT, address TEXT, postal TEXT)");
+
     }
 
     @Override
     public void onUpgrade(SQLiteDatabase db, int oldVersion, int newVersion) {
-
+        db.execSQL("drop Table if exists Userdetails");
     }
 
     //Payment
@@ -190,4 +199,110 @@ public class DBHelper extends SQLiteOpenHelper {
         return count;
 
     }
+    //cc
+    public Boolean insertuserdata(String name, String city, String address, String postal){
+
+        SQLiteDatabase db = this.getWritableDatabase();
+        ContentValues contentValues = new ContentValues();
+        contentValues.put("name",name);
+        contentValues.put("city",city);
+        contentValues.put("address",address);
+        contentValues.put("postal",postal);
+        long result=db.insert("Userdetails", null, contentValues);
+        if (result==-1){
+            return false;
+
+        }else {
+            return true;
+        }
+
+    }
+
+    //update
+
+    public Boolean updateuserdata(String name, String city, String address, String postal){
+
+        SQLiteDatabase db = this.getWritableDatabase();
+        ContentValues contentValues = new ContentValues();
+        contentValues.put("city",city);
+        contentValues.put("address",address);
+        contentValues.put("postal",postal);
+        Cursor cursor = db.rawQuery("select * from Userdetails where name = ?", new String[] {name});
+        if (cursor.getCount() > 0) {
+            long result = db.update("Userdetails", contentValues, "name=?", new String[]{name});
+            if (result == -1) {
+                return false;
+
+            } else {
+                return true;
+            }
+        }else
+        {
+            return false;
+        }
+    }
+
+    //display
+    public List readAllInfo(String req){
+        SQLiteDatabase db = getReadableDatabase();
+        String[] projection = {
+                "name",
+                "city",
+                "address",
+                "postal",
+                //OrderContract.OrderEntry.COLUMN_HASTOPPING,
+                // OrderContract.OrderEntry.COLUMN_CREAM
+        };
+        String sortOrder = "name"+ " DESC";
+        Cursor cursor = db.query(
+                "Userdetails",
+                projection,
+                null,
+                null,
+                null,
+                null,
+                sortOrder
+        );
+        List nameU = new ArrayList<>();
+        List cityU = new ArrayList<>();
+        List addressU = new ArrayList<>();
+        List postalU = new ArrayList<>();
+        // List creams = new ArrayList<>();
+
+
+        while(cursor.moveToNext()){
+            String Uname = cursor.getString(cursor.getColumnIndexOrThrow("name"));
+            String Ucity = cursor.getString(cursor.getColumnIndexOrThrow("city"));
+            String Uaddress =  cursor.getString(cursor.getColumnIndexOrThrow( "address"));
+            String Upostal =  cursor.getString(cursor.getColumnIndexOrThrow("postal"));
+
+            nameU.add(Uname);
+            cityU.add(Ucity);
+            addressU.add(Uaddress);
+            postalU.add(Upostal);
+            //creams.add(cream);
+        }
+
+        cursor.close();
+        //  Log.i(TAG, "readAllInfo" + names);
+        //  Log.i(TAG, "readAllInfo" + quantitties);
+        // Log.i(TAG, "readAllInfo" + prices);
+        //Log.i(TAG, "readAllInfo" + creams);
+
+        if(req == "name"){
+            return nameU;
+        }else if(req == "city"){
+            return cityU;
+        }else if(req == "address"){
+            return addressU;
+        }else if(req =="postal"){
+            return postalU;
+        }
+        else{
+            return null;
+        }
+
+    }
+
 }
+
