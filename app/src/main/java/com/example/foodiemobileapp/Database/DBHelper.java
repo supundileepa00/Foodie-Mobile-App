@@ -12,6 +12,16 @@ import java.util.List;
 public class DBHelper extends SQLiteOpenHelper {
     public static final String DATABASE_NAME = "FoodieDB";
     private static final String TAG = "";
+    private static final String TABLE_NAME = "FOOD_ITEM";
+
+    //COLUMN NAMES
+    private static final String ID = "id";
+    private static final String CATEGORY = "category";
+    private static final String TITLE = "title";
+    private static final String DESCRIPTION = "description";
+    private static final String PRICE = "price";
+    //    private static final Blob IMAGE = "image";
+
 
     public DBHelper(Context context) {
         super(context, DATABASE_NAME, null, 1);
@@ -19,6 +29,8 @@ public class DBHelper extends SQLiteOpenHelper {
    // public DBHelper(Context context) {
      //   super(context, "Userdata.db", null, 1);
    // }
+
+
 
     @Override
     public void onCreate(SQLiteDatabase db) {
@@ -43,6 +55,20 @@ public class DBHelper extends SQLiteOpenHelper {
                 UserMaster.Payment.COLUMN_NAME_ExpireYear + " INTEGER," +
                 UserMaster.Payment.COLUMN_NAME_CVV + " INTEGER)";
 
+
+        //table create query
+        String TABLE_CREATE_QUERY = "CREATE TABLE "+TABLE_NAME+" " +
+                "("
+                +ID+" INTEGER PRIMARY KEY AUTOINCREMENT,"
+                +CATEGORY+" TEXT,"
+                +TITLE+" TEXT,"
+                +DESCRIPTION+" TEXT,"
+                +PRICE+" TEXT" +
+//                +IMAGE+" blob" +
+                ");";
+
+        //run created query
+        db.execSQL(TABLE_CREATE_QUERY);
         db.execSQL(SQL_CREATE_UserTable);
         db.execSQL(SQL_CREATE_CoinsTable);
         db.execSQL(SQL_CREATE_PaymentTable);
@@ -54,6 +80,12 @@ public class DBHelper extends SQLiteOpenHelper {
     @Override
     public void onUpgrade(SQLiteDatabase db, int oldVersion, int newVersion) {
         db.execSQL("drop Table if exists Userdetails");
+
+        String DROP_TABLE_QUERY = "DROP TABLE IF EXISTS " + TABLE_NAME;
+        //drop older if existed
+        db.execSQL(DROP_TABLE_QUERY);
+        //create table again
+        onCreate(db);
     }
 
     //Payment
@@ -302,6 +334,91 @@ public class DBHelper extends SQLiteOpenHelper {
             return null;
         }
 
+    }
+
+    //add data to row by row
+    public void addUserMaster(UserMaster userMaster){
+        SQLiteDatabase sqLiteDatabase = getWritableDatabase();
+
+        //structure the data and send data to the database
+        ContentValues contentValues = new ContentValues();
+
+        contentValues.put(CATEGORY,userMaster.getCategory());
+        contentValues.put(TITLE,userMaster.getTitle());
+        contentValues.put(DESCRIPTION,userMaster.getDescription());
+        contentValues.put(PRICE,userMaster.getPrice());
+//        contentValues.put(IMAGE,userMaster.getImage);
+//        contentValues.put(IMAGE,byteImage);
+
+        //save values to table
+        sqLiteDatabase.insert(TABLE_NAME,null,contentValues);
+        //close database
+        sqLiteDatabase.close();
+    }
+
+    //get all food items into list
+    public List<UserMaster> getAllFoodItems(){
+
+        List<UserMaster> foodItems = new ArrayList();
+        SQLiteDatabase db = getReadableDatabase();
+        String query = "SELECT * FROM " + TABLE_NAME;
+
+        Cursor cursor = db.rawQuery(query,null);
+
+        if(cursor.moveToFirst()){
+            do{
+                //create new food object
+                UserMaster userMaster = new UserMaster();
+                userMaster.setId(cursor.getInt(0));
+                userMaster.setCategory(cursor.getString(1));
+                userMaster.setTitle(cursor.getString(2));
+                userMaster.setDescription(cursor.getString(3));
+                userMaster.setPrice(cursor.getString(4));
+
+                foodItems.add(userMaster);
+            }while(cursor.moveToNext());
+
+        }
+        return foodItems;
+    }
+
+    //delete items
+    public void deleteItem(int id){
+        SQLiteDatabase db = getWritableDatabase();
+        db.delete(TABLE_NAME,ID +" =?",new String[]{String.valueOf(id)});
+        db.close();
+    }
+
+    //get a single item
+    public UserMaster getSingle(int id){
+        SQLiteDatabase db = getWritableDatabase();
+
+        Cursor cursor =  db.query(TABLE_NAME,new String[]{DESCRIPTION,PRICE},ID+"=?",new String[]{String.valueOf(id)},null,null,null);
+
+        UserMaster userMaster;
+        if(cursor != null){
+            cursor.moveToFirst();
+            String description = cursor.getString(3);
+            String price = cursor.getString(4);
+            userMaster = new UserMaster();
+
+            return userMaster;
+        };
+        return null;
+    }
+
+    //update item details
+    public int updateSingleItem(UserMaster userMaster){
+        SQLiteDatabase db = getWritableDatabase();
+        ContentValues contentValues = new ContentValues();
+        contentValues.put(DESCRIPTION,userMaster.getDescription());
+        contentValues.put(PRICE,userMaster.getPrice());
+
+        //get how many rows were updated
+        int status = db.update(TABLE_NAME,contentValues,ID+" ?",new String[]{String.valueOf(userMaster.getId())});
+
+        db.close();
+        return status;
     }
 
 }
