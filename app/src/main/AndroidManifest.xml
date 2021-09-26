@@ -2,6 +2,12 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="com.example.foodiemobileapp">
 
+    //ss
+    <uses-permission android:name="android.permission.START_VIEW_PERMISSION_USAGE.READ_EXTERNAL_STORAGE" />
+    <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
+    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
+    <uses-permission android:name="android.permission.CAMERA" />
+
 
     <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
     <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
@@ -69,6 +75,55 @@
             android:name=".Database.OrderProvider"
             android:authorities="com.example.orderapp"
             android:exported="true" />
+
+        //ss
+        <activity android:name=".subCategory"></activity>
+
+        <activity android:name=".listTest">
+
+
+
+
+        </activity>
+
+        <activity android:name=".login" />
+        <activity
+            android:name=".menu"
+            android:label="@string/title_activity_menu"
+            android:theme="@style/Theme.MAD.NoActionBar" >
+
+
+
+
+
+        </activity>
+        <activity
+            android:name=".add_item"
+            android:label="Admin" >
+
+
+
+        </activity>
+        <activity
+            android:name=".update_details"
+            android:label="Admin" />
+        <activity
+            android:name=".admin_home"
+            android:label="Admin">
+
+
+
+        </activity>
+        <activity
+            android:name=".cheeseBurger"
+            android:label="Burger" />
+        <!--        <activity-->
+        <!--            android:name=".Burger"-->
+        <!--            android:label="Burger" />-->
+        <!--        <activity android:name=".MainActivity2"></activity>-->
+        <activity
+            android:name="com.theartofdev.edmodo.cropper.CropImageActivity"
+            android:theme="@style/Base.Theme.AppCompat" />
     </application>
 
 </manifest>
